@@ -20,64 +20,117 @@ bool readSettings(Settings &settings, String settingsFile)
             String key = line.substring(0, separatorIndex);
             String value = line.substring(separatorIndex + 1);
 
-            if (key == "wifi_ssid")
+            if (key == "wifiSsid")
             {
-                settings.wifi_ssid = value;
+                settings.wifiSsid = value;
             }
-            else if (key == "wifi_password")
+            else if (key == "wifiPassword")
             {
-                settings.wifi_password = value;
+                settings.wifiPassword = value;
             }
-            else if (key == "device_name")
+            else if (key == "deviceName")
             {
-                settings.device_name = value;
+                settings.deviceName = value;
             }
-            else if (key == "broadcast_port")
+            else if (key == "broadcastPort")
             {
-                settings.broadcast_port = value.toInt();
+                settings.broadcastPort = value.toInt();
             }
-            else if (key == "light_duration")
+            else if (key == "lightDuration")
             {
-                Serial.println("light_duration: " + value);
-                settings.light_duration = value.toInt() * 1000;
+                settings.lightDuration = value.toInt();
             }
-            else if (key == "broadcast_interval")
+            else if (key == "broadcastInterval")
             {
-                Serial.println("broadcast_interval: " + value);
-                settings.broadcast_interval = value.toInt() * 1000;
+                settings.broadcastInterval = value.toInt();
             }
-            else if (key == "listen_duration")
+            else if (key == "masterListenDuration")
             {
-                Serial.println("master_listen_duration: " + value);
-                settings.master_listen_duration = value.toInt() * 1000;
+                settings.masterListenDuration = value.toInt();
             }
-            else if (key == "R1")
+            else if (key == "vdR1")
             {
-                Serial.println("R1: " + value);
-                settings.R1 = value.toFloat();
+                settings.vdR1 = value.toFloat();
             }
-            else if (key == "R2")
+            else if (key == "vdR2")
             {
-                Serial.println("R2: " + value);
-                settings.R2 = value.toFloat();
+                settings.vdR2 = value.toFloat();
             }
             else if (key == "maxADC")
             {
-                Serial.println("maxADC: " + value);
                 settings.maxADC = value.toFloat();
             }
             else if (key == "refVoltage")
             {
-                Serial.println("refVoltage: " + value);
                 settings.refVoltage = value.toFloat();
             }
             else if (key == "vbatMin")
             {
-                Serial.println("vbatMin: " + value);
                 settings.vbatMin = value.toFloat();
+            }
+            else if (key == "checkLightingLevelInterval")
+            {
+                settings.checkLightingLevelInterval = value.toInt();
+            }
+            else if (key == "checkVBatInterval")
+            {
+                settings.checkVBatInterval = value.toInt();
+            }
+            else if (key == "checkEnvironmentInterval")
+            {
+                settings.checkEnvironmentInterval = value.toInt();
+            }
+            else if (key == "pirSensorCheckInterval") {
+                settings.pirSensorCheckInterval = value.toInt();
+            }
+            else if (key == "minLightLevel") {
+                settings.minLightLevel = value.toFloat();
+            }
+            else if (key == "usrPassword") {
+                settings.usrPassword = value;
+            }
+            else if (key == "usrName") {
+                settings.usrName = value;
+            }
+            else if (key == "maxHumidityPoints") {
+                settings.maxHumidityPoints = value.toInt();
+            }
+            else if (key == "maxTemperaturePoints") {
+                settings.maxTemperaturePoints = value.toInt();
+            }
+            else if (key == "maxVoltagePoints") {
+                settings.maxVoltagePoints = value.toInt();
+            }
+             else {
+                Serial.println("Unknown key: " + key);
             }
         }
     }
     file.close();
     return true;
+}
+
+String Settings::toString()
+{
+    String result = "wifiSsid=" + wifiSsid + "\n";
+    result += "wifiPassword=" + wifiPassword + "\n";
+    result += "deviceName=" + deviceName + "\n";
+    result += "broadcastPort=" + String(broadcastPort) + "\n";
+    result += "lightDuration=" + String(lightDuration) + "\n";
+    result += "broadcastInterval=" + String(broadcastInterval) + "\n";
+    result += "masterListenDuration=" + String(masterListenDuration) + "\n";
+    result += "vdR1=" + String(vdR1) + "\n";
+    result += "vdR2=" + String(vdR2) + "\n";
+    result += "maxADC=" + String(maxADC) + "\n";
+    result += "refVoltage=" + String(refVoltage) + "\n";
+    result += "vbatMin=" + String(vbatMin) + "\n";
+    result += "checkLightingLevelInterval=" + String(checkLightingLevelInterval) + "\n";
+    result += "checkVBatInterval=" + String(checkVBatInterval) + "\n";
+    result += "checkEnvironmentInterval=" + String(checkEnvironmentInterval) + "\n";
+    result += "pirSensorCheckInterval=" + String(pirSensorCheckInterval) + "\n";
+    result += "minLightLevel=" + String(minLightLevel) + "\n";
+    result += "maxHumidityPoints=" + String(maxHumidityPoints) + "\n";
+    result += "maxTemperaturePoints=" + String(maxTemperaturePoints) + "\n";
+    result += "maxVoltagePoints=" + String(maxVoltagePoints) + "\n";
+    return result;
 }
