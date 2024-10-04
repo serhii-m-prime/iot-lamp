@@ -19,10 +19,10 @@
 #include "TemperatureLogger.h"
 #include "VoltageLogger.h"
 
-#define MOSFET_LED_PIN 5 // D1
+#define MOSFET_LED_PIN 13 // D1
 #define PIR_PIN 4        // D2
 #define BATTERY_PIN A0
-#define MOSFET_LIGHT_MODULE_PIN 15 // D8
+#define MOSFET_LIGHT_MODULE_PIN 5 // D8
 #define I2C_SDA_PIN 14             // D5
 #define I2C_SCL_PIN 12             // D6
 

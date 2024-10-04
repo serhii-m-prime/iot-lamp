@@ -26,8 +26,8 @@ extern float cLight;
 extern bool isLightOffByUserConmmand;
 extern bool isLightOnByUserConmmand;
 
-#define MOSFET_LIGHT_MODULE_PIN 15 // D8
-#define MOSFET_LED_PIN 5 // D1
+#define MOSFET_LIGHT_MODULE_PIN 5 // D8
+#define MOSFET_LED_PIN 13 // D1
 
 String logedSession;
 unsigned long sessionExpiteAt;
